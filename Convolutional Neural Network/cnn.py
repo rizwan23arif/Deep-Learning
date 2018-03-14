@@ -66,7 +66,7 @@ classifier.fit_generator(training_set,
 from skimage.io import imread
 from skimage.transform import resize
 
-img = imread('D:\Online Study\Machine Learning\Machine Learning A-Z Template Folder\Part 8 - Deep Learning\Section 40 - Convolutional Neural Networks (CNN)\dog.jpg')  # make sure that path_to_file contains the path to the image you want to predict on.
+img = imread('dog.jpg')  # make sure that path_to_file contains the path to the image you want to predict on.
 img = resize(img, (64, 64))
 img = np.expand_dims(img, axis=0)
 img = img / (255.0)
