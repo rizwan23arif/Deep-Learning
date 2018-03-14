@@ -63,19 +63,20 @@ classifier.fit_generator(training_set,
                          validation_data = test_set,
                          validation_steps = 2000/32)
 
-from skimage.io import imread
-from skimage.transform import resize
+from keras.preprocessing import image
 
-img = imread('dog.jpg')  # make sure that path_to_file contains the path to the image you want to predict on.
-img = resize(img, (64, 64))
-img = np.expand_dims(img, axis=0)
-img = img / (255.0)
-prediction = classifier.predict_classes(img)
+img = image.load_img('./bird4.jpg', target_size = (64, 64))
+img = image.img_to_array(img)
+img = np.expand_dims(img, axis = 0)
+result = classifier.predict(img)
 
-if (prediction):
-    print("DOG")
+# training_set.class_indices
+if result[0][0] == 1:
+    prediction = 'dog'
+    print('dog')
 else:
-    print("CAT")
+    prediction = 'cat'
+    print('cat')
 
 # elapsed time in seconds
 end = timer()
